@@ -32,6 +32,9 @@ pub struct SharedDependency {
 
     #[schemars(description = "The resolved version of the dependency")]
     pub version: Version,
+
+    #[schemars(description = "The package configuration for the resolved dependency")]
+    pub config: PackageConfig,
 }
 
 /// qpm.shared.json

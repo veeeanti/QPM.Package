@@ -11,20 +11,20 @@ use super::{
 
 use crate::models::version_req::make_version_req_schema;
 
-#[inline]
-fn default_ver() -> Version {
-    Version::new(0, 4, 0)
-}
-
-/// latest version
+/// The current package configuration version
 #[inline]
 pub fn package_target_version() -> Version {
     // This will be safe since it is checked in build.rs
     Version::parse(env!("CARGO_PKG_VERSION")).unwrap()
 }
 
+#[inline]
+fn default_ver() -> Version {
+    package_target_version()
+}
+
 // qpm.json
-#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug, Hash, PartialEq, Eq)]
 #[allow(non_snake_case)]
 #[serde(rename_all = "camelCase")]
 #[schemars(description = "Configuration for a package.")]

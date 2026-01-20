@@ -61,7 +61,12 @@ impl PackageMetadataExtensions for PackageMetadata {
 
 impl PackageMetadataExtensions for SharedDependency {
     fn get_so_name(&self) -> PathBuf {
-        self.dependency
+        self.get_so_name2()
+    }
+    
+    fn get_so_name2(&self) -> PathBuf {
+        self.config
+            .info
             .additional_data
             .override_so_name
             .clone()
@@ -74,8 +79,14 @@ impl PackageMetadataExtensions for SharedDependency {
             })
             .into()
     }
+    
     fn get_static_name(&self) -> PathBuf {
-        self.dependency
+        self.get_static_name2()
+    }
+    
+    fn get_static_name2(&self) -> PathBuf {
+        self.config
+            .info
             .additional_data
             .override_static_name
             .clone()
@@ -87,13 +98,5 @@ impl PackageMetadataExtensions for SharedDependency {
                 )
             })
             .into()
-    }
-
-    fn get_so_name2(&self) -> PathBuf {
-        todo!()
-    }
-
-    fn get_static_name2(&self) -> PathBuf {
-        todo!()
     }
 }

@@ -1,5 +1,4 @@
 mod models;
-use std::env;
 
 
 fn main() {
